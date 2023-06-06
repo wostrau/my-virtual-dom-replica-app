@@ -1,24 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Button from './components/UI/Button';
+import DemoList from './components/Demo/DemoList';
 
 function App() {
+  const [listTitle, setListTitle] = React.useState('My List');
+
+  const changeTitleHandler = React.useCallback(() => {
+    setListTitle('New Title');
+  }, []);
+
+  const listItems = React.useMemo(() => [5, 3, 1, 10, 9], [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='app'>
+      <DemoList
+        title={listTitle}
+        items={listItems}
+      />
+      <Button onClick={changeTitleHandler}>Change List Title</Button>
     </div>
   );
 }
